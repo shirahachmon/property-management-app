@@ -6,6 +6,7 @@ import Properties from "./pages/Properties";
 import Tenants from "./pages/Tenants";
 import Leases from "./pages/Leases";
 import AddProperty from "./pages/AddProperty";
+import EditProperty from "./pages/EditProperty";
 
 
 const App: React.FC = () => {
@@ -18,6 +19,7 @@ const App: React.FC = () => {
           <Route path="tenants" element={<Tenants />} />
           <Route path="leases" element={<Leases />} />
           <Route path="add-property" element={<AddProperty />} />
+        <Route path="/edit-property/:id" element={<EditProperty />} />
 
         </Route>
       </Routes>
