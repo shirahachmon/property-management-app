@@ -1,4 +1,3 @@
-import React, { type JSX } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
@@ -26,25 +25,27 @@ export default function EditProperty(): JSX.Element {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-const { data, isLoading, isError } = useQuery({
-  queryKey: ["property", id],
-  queryFn: () => fetchProperty(id!),
-  enabled: !!id,
-});
+  // fetch property data
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["property", id],
+    queryFn: () => fetchProperty(id!),
+    enabled: !!id,
+  });
 
+  // mutation for updating property
   const mutation = useMutation({
     mutationFn: (updated: PropertyFormValues) => updateProperty({ ...updated, id: id! }),
     onSuccess: () => {
-      toast.success("Property updated");
+      toast.success("Property updated successfully");
       queryClient.invalidateQueries({ queryKey: ["properties"] });
-
       navigate("/properties");
     },
     onError: () => toast.error("Failed to update property"),
   });
 
   if (isLoading) return <div className="p-4 text-center">Loading property...</div>;
-  if (isError || !data) return <div className="p-4 text-center text-red-600">Failed to load property</div>;
+  if (isError || !data)
+    return <div className="p-4 text-center text-red-600">Failed to load property</div>;
 
   return <PropertyForm initialData={data} onSubmit={mutation.mutate} />;
 }
