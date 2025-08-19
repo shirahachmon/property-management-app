@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainLayout from "./components/MainLayout";
 import Dashboard from "./pages/Dashboard";
@@ -8,8 +7,7 @@ import Leases from "./pages/Leases";
 import AddProperty from "./pages/AddProperty";
 import EditProperty from "./pages/EditProperty";
 
-
-const App: React.FC = () => {
+function App() {
   return (
     <Router>
       <Routes>
@@ -19,12 +17,11 @@ const App: React.FC = () => {
           <Route path="tenants" element={<Tenants />} />
           <Route path="leases" element={<Leases />} />
           <Route path="add-property" element={<AddProperty />} />
-        <Route path="/edit-property/:id" element={<EditProperty />} />
-
+          <Route path="edit-property/:id" element={<EditProperty />} />
         </Route>
       </Routes>
     </Router>
   );
-};
+}
 
 export default App;
