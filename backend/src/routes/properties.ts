@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { Property, properties } from "../data/properties";
+import { log } from "console";
 
 const router = Router();
 
@@ -13,6 +14,7 @@ router.get("/", (req, res) => {
 
 // GET single property by ID
 router.get("/:id", (req, res) => {
+  console.log("hit /:id route");
   const id = Number(req.params.id);
   const property = properties.find(p => p.id === id);
   if (!property) return res.status(404).json({ message: "Property not found" });
