@@ -1,0 +1,26 @@
+{
+  "name": "property-management-app",
+  "private": true,
+  "packageManager": "pnpm@9",
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier -w .",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx,js,jsx}": ["eslint --fix"],
+    "**/*.{json,md,css,scss,html}": ["prettier --write"]
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "eslint": "^9.9.0",
+    "husky": "^9.0.0",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.3.3",
+    "turbo": "^2.0.0",
+    "typescript": "^5.5.4"
+  }
+}
